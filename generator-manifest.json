@@ -1,0 +1,18 @@
+{
+  "branch": "main",
+  "depends_recipe": "",
+  "description_control": "blindscan...",
+  "description_recipe": "blindscan...",
+  "history_source_dir": "Blindscan",
+  "internal_package_name": "enigma2-plugin-systemplugins-blindscan",
+  "module_dir_name": "Blindscan",
+  "output_subdir": "Blindscan",
+  "package_name": "enigma2-plugin-systemplugins-blindscan",
+  "plugin_src_rel": "Blindscan",
+  "python_package": "Blindscan",
+  "rdepends_recipe": "",
+  "replaces": "",
+  "repo_name": "Blindscan",
+  "rrecommends": "virtual-blindscan-dvbs",
+  "rreplaces": ""
+}
