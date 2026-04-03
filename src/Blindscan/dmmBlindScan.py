@@ -156,7 +156,7 @@ class DmmBlindscanState(Screen):
 				try:
 					val = int(bitmap[pos:pos + 2], 16)
 					val = 128 + (val - 256 if val > 127 else val)
-					#val = (int(bitmap[pos:pos+2], 16) + 128) & 0xff
+					# val = (int(bitmap[pos:pos+2], 16) + 128) & 0xff
 				except ValueError:
 					print("[dmmBlindscan][updateConstellation] I constellation data broken at pos", pos)
 					val = 0
@@ -165,7 +165,7 @@ class DmmBlindscanState(Screen):
 				try:
 					val = int(bitmap[pos:pos + 2], 16)
 					val = 128 + (val - 256 if val > 127 else val)
-					#val = (int(bitmap[pos:pos+2], 16) + 128) & 0xff
+					# val = (int(bitmap[pos:pos+2], 16) + 128) & 0xff
 				except ValueError:
 					print("[dmmBlindscan][updateConstellation] Q constellation data broken at pos", pos)
 					val = 0
@@ -299,9 +299,9 @@ class SatelliteTransponderSearchSupport:
 					self.parm.frequency += self.parm.symbol_rate
 
 			if self.auto_scan:
-#				freq = d["frequency"]
-#				freq = int(round(float(freq*2) // 1000)) * 1000
-#				freq /= 2
+# freq = d["frequency"]
+# freq = int(round(float(freq*2) // 1000)) * 1000
+# freq /= 2
 				freq = int(round(d["frequency"], -3))  # round to nearest 1000
 				mhz_complete, mhz_done = self.stats(freq)
 				print("[dmmBlindscan][frontendStateChanged] CURRENT freq", freq, "%d/%d" % (mhz_done, mhz_complete))
@@ -516,8 +516,8 @@ class SatelliteTransponderSearchSupport:
 					else:
 						self.range_list.append((start, stop, pol))
 
-#			if self.dmmBlindscan.multiple_scan.value > 1:
-#				self.range_list = [self.range_list[i//self.dmmBlindscan.multiple_scan.value] for i in range(len(self.range_list)*self.dmmBlindscan.multiple_scan.value)]
+# if self.dmmBlindscan.multiple_scan.value > 1:
+# self.range_list = [self.range_list[i//self.dmmBlindscan.multiple_scan.value] for i in range(len(self.range_list)*self.dmmBlindscan.multiple_scan.value)]
 
 			print("[dmmBlindscan][startSatelliteTransponderSearch] self.range_list", self.range_list)
 
@@ -541,7 +541,7 @@ class SatelliteTransponderSearchSupport:
 			self.session.open(MessageBox, tmpstr, MessageBox.TYPE_ERROR)
 			return
 		self.satellite_search_session = self.session.openWithCallback(self.satelliteTransponderSearchSessionClosed, DmmBlindscanState, tuner_no, tmpstr)
-		#if self.auto_scan:
+		# if self.auto_scan:
 		self.timer = eTimer()
 		self.timer.callback.append(self.updateStateSat)
 		self.timer.stop()
@@ -648,7 +648,7 @@ class DmmBlindscan(ConfigListScreen, Screen, SatelliteTransponderSearchSupport, 
 		tunername = nimmanager.getNimName(index_to_scan)
 
 		self.updateSatList()
-#			selected_sat_pos = self.scan_satselection[index_to_scan].value
+# selected_sat_pos = self.scan_satselection[index_to_scan].value
 		self.satelliteEntry = getConfigListEntry(_("Satellite"), self.scan_satselection[index_to_scan], _("Select the satellite you wish to search"))
 		self.list.append(self.satelliteEntry)
 
@@ -680,7 +680,7 @@ class DmmBlindscan(ConfigListScreen, Screen, SatelliteTransponderSearchSupport, 
 				self.list.append(getConfigListEntry(_("Disable sync with known transponders"), self.dmmBlindscan.disable_sync_with_known_tps, _('CAUTION: If you select "yes" the scan will not sync with transponders listed in satellites.xml. Default is "no". Only change this if you understand why you are doing it.')))
 			self.list.append(getConfigListEntry(_("Disable remove duplicates"), self.dmmBlindscan.disable_remove_duplicate_tps, _('CAUTION: If you select "yes" the scan will not remove "duplicated" transponders from the list. Default is "no". Only change this if you understand why you are doing it.')))
 			self.list.append(getConfigListEntry(_("Filter out adjacent satellites"), self.dmmBlindscan.filter_off_adjacent_satellites, _('When a neighbouring satellite is very strong this avoids searching transponders known to be coming from the neighbouring satellite.')))
-#		self.list.append(getConfigListEntry(_("Scan multiple times"), self.dmmBlindscan.multiple_scan,_('Scan all frequencies multiple times to capture transponders missed on the first attempt.')))
+# self.list.append(getConfigListEntry(_("Scan multiple times"), self.dmmBlindscan.multiple_scan,_('Scan all frequencies multiple times to capture transponders missed on the first attempt.')))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -786,7 +786,7 @@ class DmmBlindscan(ConfigListScreen, Screen, SatelliteTransponderSearchSupport, 
 				(eDVBFrontendParametersSatellite.System_DVB_S, _("DVB-S only"))])
 
 		self.dmmBlindscan.accuracy = ConfigSelection(default=2, choices=[(1, "1"), (2, "2"), (3, "3"), (4, "4"), (5, "5")])
-#		self.dmmBlindscan.multiple_scan = ConfigSelection(default = 1, choices = [(1, "only scan once"), (2, "scan twice"), (3, "scan three times")])
+# self.dmmBlindscan.multiple_scan = ConfigSelection(default = 1, choices = [(1, "only scan once"), (2, "scan twice"), (3, "scan three times")])
 		self.search_type = ConfigSelection(default="services", choices=[
 			("services", _("scan for channels")),
 			("xml", _("save to XML file"))])

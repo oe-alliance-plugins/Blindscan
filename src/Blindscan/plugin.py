@@ -29,7 +29,7 @@ import six
 
 from . filters import TransponderFiltering  # imported from Blindscan folder
 
-#used for the XML file
+# used for the XML file
 from time import strftime, time
 
 # root2gold based on https://github.com/DigitalDevices/dddvb/blob/master/apps/pls.c
@@ -73,7 +73,7 @@ def getMisPlsValue(d, idx, defaultValue):
 	except:
 		return defaultValue
 
-#used for blindscan-s2
+# used for blindscan-s2
 
 
 def getAdapterFrontend(frontend, description):
@@ -767,9 +767,9 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 			self.clockTimer.start(1000)
 
 	def doClock(self):
-#		print "[Blindscan][doClock] started"
+# print "[Blindscan][doClock] started"
 		is_scan = False
-#		print "[Blindscan][doClock] self.is_runable", self.is_runable
+# print "[Blindscan][doClock] self.is_runable", self.is_runable
 		if self.is_runable:
 			if self.running_count >= self.max_count:
 				self.clockTimer.stop()
@@ -900,7 +900,7 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 					cmd += " -l %d -2" % self.universal_lo_freq["high"]  # on high band enable 22KHz tone
 				else:
 					cmd += " -l %d" % self.universal_lo_freq["low"]
-				#self.frontend and self.frontend.closeFrontend() # close because blindscan-s2 does not like to be open
+				# self.frontend and self.frontend.closeFrontend() # close because blindscan-s2 does not like to be open
 				self.cmd = cmd
 				self.bsTimer.stop()
 				self.bsTimer.start(6000, True)
