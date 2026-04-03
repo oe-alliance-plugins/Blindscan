@@ -26,7 +26,7 @@ XML_BLINDSCAN_DIR = "/tmp"
 
 try:
 	boxtype = open("/proc/stb/info/model").read().strip()
-except:
+except Exception:
 	boxtype = ""
 
 
@@ -449,7 +449,7 @@ class SatelliteTransponderSearchSupport:
 							slist = self.session.infobar.servicelist
 							if slist and slist.dopipzap:
 								slist.togglePipzap()
-						except:
+						except Exception:
 							pass
 					self.session.pipshown = False
 					if hasattr(self.session, 'pip'):
@@ -569,7 +569,7 @@ class DmmBlindscan(ConfigListScreen, Screen, SatelliteTransponderSearchSupport, 
 				try:
 					slot.config.dvbs
 					self.legacy = False
-				except:
+				except Exception:
 					self.legacy = True
 				break
 
@@ -581,7 +581,7 @@ class DmmBlindscan(ConfigListScreen, Screen, SatelliteTransponderSearchSupport, 
 		del self.service
 		try:
 			self.session.postScanService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		except:
+		except Exception:
 			self.session.postScanService = self.session.nav.getCurrentlyPlayingServiceReference()
 
 		self["actions"] = NumberActionMap(["SetupActions"],
@@ -1021,7 +1021,7 @@ class DmmBlindscan(ConfigListScreen, Screen, SatelliteTransponderSearchSupport, 
 		try:
 			xml.append('	using %s receiver running Enigma2 image, version %s,\n' % (boxtype, about.getEnigmaVersionString()))
 			xml.append('	image %s, with the Blind scan plugin\n\n' % (about.getImageTypeString()))
-		except:
+		except Exception:
 			xml.append('	using %s receiver running Enigma2 image (%s), with the blind scan plugin\n\n' % (boxtype, tuner))
 		xml.append('-->\n\n')
 		xml.append('<satellites>\n')

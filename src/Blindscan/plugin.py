@@ -42,7 +42,7 @@ try:
 	MODEL = BoxInfo.getItem("machinebuild")
 	IMGVER = BoxInfo.getItem("imageversion")
 	IMGBUILD = BoxInfo.getItem("imagebuild")
-except:
+except ImportError:
 	from boxbranding import getImageDistro, getImageBuild, getBrandOEM, getMachineBuild, getBoxType, getImageVersion
 	IMAGEDISTRO = getImageDistro()
 	BRAND = getBrandOEM()
@@ -70,7 +70,7 @@ def root2gold(root):
 def getMisPlsValue(d, idx, defaultValue):
 	try:
 		return int(d[idx])
-	except:
+	except Exception:
 		return defaultValue
 
 # used for blindscan-s2
@@ -82,7 +82,7 @@ def getAdapterFrontend(frontend, description):
 			product = open("/sys/class/dvb/dvb%d.frontend0/device/product" % adapter).read()
 			if description in product:
 				return " -a %d" % adapter
-		except:
+		except Exception:
 			break
 	return " -f %d" % frontend
 
@@ -251,7 +251,7 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 				try:
 					slot.config.dvbs
 					self.legacy = False
-				except:
+				except Exception:
 					self.legacy = True
 				break
 		self.createConfig()
@@ -337,7 +337,7 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 		_nimSocket = {}
 		try:
 			fp = open(filepath)
-		except:
+		except Exception:
 			return _nimSocket
 		sNo, sName, sI2C = -1, "", -1
 		for line in fp:
@@ -346,12 +346,12 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 				sNo, sName, sI2C = -1, '', -1
 				try:
 					sNo = line.split()[2][:-1]
-				except:
+				except Exception:
 					sNo = -1
 			elif line.startswith('I2C_Device:'):
 				try:
 					sI2C = line.split()[1]
-				except:
+				except Exception:
 					sI2C = -1
 			elif line.startswith('Name:'):
 				splitLines = line.split()
@@ -360,7 +360,7 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 						sName = splitLines[1]
 					else:
 						sName = splitLines[3][4:-1]
-				except:
+				except Exception:
 					sName = ""
 			print("sNo, sName, sI2C", sNo, sName, sI2C)
 			if sNo != -1 and sName != "":
@@ -383,7 +383,7 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 				if len(nimsocket) > 1:
 					try:
 						self.i2c_mapping_table[int(XX)] = int(nimsocket[1])
-					except:
+					except Exception:
 						continue
 					is_exist_i2c = True
 		print("[Blindscan][makeNimSocket] i2c_mapping_table:", self.i2c_mapping_table, ", is_exist_i2c:", is_exist_i2c)
@@ -400,7 +400,7 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 						self.i2c_mapping_table = {0: 2, 1: 2, 2: 4, 3: 4}
 					else:
 						self.i2c_mapping_table = {0: 2, 1: 4, 2: 4, 3: 0}
-				except:
+				except Exception:
 					self.i2c_mapping_table = {0: 2, 1: 4, 2: 4, 3: 0}
 			else:
 				self.i2c_mapping_table = {0: 2, 1: 4, 2: 0, 3: 0}
@@ -728,7 +728,7 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 				sName = _nimSocket[str(nimIdx)][0]
 				sType = _supportNimType[sName]
 				return "vuplus_%(TYPE)sblindscan" % {'TYPE': sType}, sName
-			except:
+			except Exception:
 				pass
 			return "vuplus_blindscan", ""
 		if BRAND == 'vuplus' and not self.SundtekScan:
@@ -1603,7 +1603,7 @@ def BlindscanMain(session, close=None, **kwargs):
 	try:
 		if 'Supports_Blind_Scan: yes' in open('/proc/bus/nim_sockets').read():
 			have_Support_Blindscan = True
-	except:
+	except Exception:
 		pass
 	if have_Support_Blindscan or BRAND == 'dreambox':
 		from . import dmmBlindScan
