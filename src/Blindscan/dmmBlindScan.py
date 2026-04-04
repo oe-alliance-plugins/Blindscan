@@ -151,7 +151,7 @@ class DmmBlindscanState(Screen):
 			bitmap_list = self.getConstellationBitmap()
 		for bitmap in bitmap_list:
 			Q = []
-			I = []
+			I = []  # noqa : E741
 			for pos in range(0, 30, 2):
 				try:
 					val = int(bitmap[pos:pos + 2], 16)
