@@ -531,7 +531,7 @@ class SatelliteTransponderSearchSupport:
 			else:
 				tmpstr = _("Nothing to scan! Press Exit!")
 			x = {}
-			data = self.frontend.getFrontendData(x)
+			data = self.frontend.getFrontendData(x)  # noqa: F841
 			tuner_no = x["tuner_number"]
 		else:
 			if "Sundtek DVB-S/S2" in tunername and "V" in tunername:
@@ -806,7 +806,7 @@ class DmmBlindscan(ConfigListScreen, Screen, SatelliteTransponderSearchSupport, 
 				sat_freq_range = {(10700000, 12750000)}
 				sat_band_cutoff = {11700000}
 				for sat in satlist_for_slot:
-					orbpos = sat[0]
+					orbpos = sat[0]  # noqa: F841
 				self.nim_sat_frequency_range.append(sat_freq_range)
 				self.nim_sat_band_cutoff_frequency.append(sat_band_cutoff)
 			else:
