@@ -25,7 +25,6 @@ from Screens.ServiceScan import ServiceScan
 from Tools.BoundFunction import boundFunction
 
 import os
-import six
 
 from . filters import TransponderFiltering  # imported from Blindscan folder
 
@@ -1173,7 +1172,7 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 		self.blindscan_session = None
 
 	def blindscanContainerAvail(self, str):
-		str = six.ensure_str(str)
+		str = str.decode("utf-8", "replace") if isinstance(str, bytes) else str
 		print("[Blindscan][blindscanContainerAvail]", str)
 		self.full_data = self.full_data + str  # TODO: is this the cause of the duplicates in blindscanContainerClose?
 		if self.blindscan_session:
