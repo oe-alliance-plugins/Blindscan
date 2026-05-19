@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blindscan - oe-alliance\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-03 07:54+0100\n"
+"POT-Creation-Date: 2026-04-08 10:12+0200\n"
 "PO-Revision-Date: 2017-07-05 15:24+0300\n"
 "Last-Translator: Vytenis P. <vyteniui@gmail.com>\n"
 "Language-Team: Vytenis P.\n"
@@ -16,11 +16,13 @@ msgstr ""
 "X-Generator: Poedit 2.0.2\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
+#: ../dmmBlindScan.py:486
 msgid ""
 "\n"
 "A recording is in progress."
 msgstr ""
 
+#: ../plugin.py:565
 #, fuzzy
 msgid ""
 "\n"
@@ -29,6 +31,7 @@ msgstr ""
 "\n"
 "Antrasis dvigubo imtuvo lizdas gali nepalaikyti aklosios paieškos."
 
+#: ../plugin.py:567
 msgid ""
 "\n"
 "You must use the power adapter."
@@ -36,79 +39,102 @@ msgstr ""
 "\n"
 "Naudokite maitinimo šaltinį."
 
+#: ../plugin.py:1005
 msgid "   Starting Sundtek hardware blind scan."
 msgstr "   Pradedama akloji paieška Sundtek įranga."
 
+#: ../plugin.py:738
 #, fuzzy
 msgid " tuner."
 msgstr "Imtuvas"
 
+#: ../plugin.py:589
 #, fuzzy
 msgid "\"channel scan\" searches for channels and saves them to your receiver; \"transponder scan\" does a transponder search and displays the results allowing user to select some or all transponder. Both options save the results in satellites.xml format under /tmp"
 msgstr "Parinktis 'ieškoti kanalų' ieško kanalų ir išsaugo juos aparate; abi šios parinktys atlieka paiešką transponderiuose ir rezultatą išsaugo /tmp XML faile satellites.xml formatu"
 
+#: ../dmmBlindScan.py:665
 #, fuzzy
 msgid "\"scan for channels\" searches for channels and saves them to your receiver; \"Save to XML\" does a transponder search and saves the results in satellites.xml format and stores it in /tmp"
 msgstr "Parinktis 'ieškoti kanalų' ieško kanalų ir išsaugo juos aparate; abi šios parinktys atlieka paiešką transponderiuose ir rezultatą išsaugo /tmp XML faile satellites.xml formatu"
 
+#: ../dmmBlindScan.py:347
 #, fuzzy, python-format
 msgid "%d transponder(s) found"
 msgstr "Surasti %d transponderiai per %d:%02d min."
 
+#: ../dmmBlindScan.py:322
 #, python-format
 msgid "%d transponders found at %d:%02d min"
 msgstr "Surasti %d transponderiai per %d:%02d min."
 
+#: ../dmmBlindScan.py:352
 #, fuzzy, python-format
 msgid "%d:%02d/%d:%02dmin"
 msgstr "Žingsnis %d %d:%02d min."
 
+#: ../dmmBlindScan.py:320
 #, python-format
 msgid "%dMHz scanned"
 msgstr ""
 
+#: ../dmmBlindScan.py:673
 msgid "Accuracy (higher is better)"
 msgstr ""
 
+#: ../dmmBlindScan.py:87
 msgid "Auto / Manual"
 msgstr ""
 
+#: ../plugin.py:1616 ../plugin.py:1625
 msgid "Blind scan"
 msgstr "Akloji paieška"
 
+#: ../dmmBlindScan.py:555
 msgid "Blind scan for DVB-S2 tuners"
 msgstr ""
 
+#: ../dmmBlindScan.py:79 ../plugin.py:158
 #, fuzzy
 msgid "Blind scan state"
 msgstr "Akloji paieška"
 
+#: ../plugin.py:232
 msgid "Blindscan"
 msgstr "Akla paieška"
 
+#: ../plugin.py:907 ../plugin.py:916 ../plugin.py:946 ../plugin.py:954
+#: ../plugin.py:968
 #, python-format
 msgid "Blindscan executable not found '%s'!"
 msgstr ""
 
+#: ../plugin.py:738
 msgid "Blindscan is not supported in "
 msgstr ""
 
+#: ../dmmBlindScan.py:681 ../plugin.py:625
 msgid "CAUTION: If you select \"yes\" the scan will not remove \"duplicated\" transponders from the list. Default is \"no\". Only change this if you understand why you are doing it."
 msgstr ""
 
+#: ../dmmBlindScan.py:680 ../plugin.py:624
 #, fuzzy
 msgid "CAUTION: If you select \"yes\" the scan will not sync with transponders listed in satellites.xml. Default is \"no\". Only change this if you understand why you are doing it."
 msgstr "Jeigu čia pasirinksite 'taip', bus ieškoma tik transponderiuose, nesančiuose satellites.xml faile"
 
+#: ../plugin.py:599
 msgid "CAUTION: Only select \"inverted\" if you are using an inverted LNB (i.e. an LNB where the local oscillator frequency is greater than the scan frequency). Default is \"normal\". Only change this if you understand why you are doing it."
 msgstr ""
 
+#: ../dmmBlindScan.py:86 ../plugin.py:163
 msgid "Cancel"
 msgstr ""
 
+#: ../dmmBlindScan.py:675 ../plugin.py:619
 msgid "Clear before scan"
 msgstr "Prieš paiešką išvalyti"
 
+#: ../plugin.py:1008
 #, fuzzy, python-format
 msgid ""
 "Current Status: %d/%d\n"
@@ -121,59 +147,78 @@ msgstr ""
 "   Dažnių diapazonas: %d - %d MHz\n"
 "   Simbolių dažniai: %d - %d MHz"
 
+#: ../dmmBlindScan.py:785
 msgid "DVB-S + DVB-S2"
 msgstr ""
 
+#: ../dmmBlindScan.py:786
 msgid "DVB-S only"
 msgstr ""
 
+#: ../plugin.py:189
 msgid "Deselect all"
 msgstr ""
 
+#: ../dmmBlindScan.py:681 ../plugin.py:625
 msgid "Disable remove duplicates"
 msgstr ""
 
+#: ../dmmBlindScan.py:680 ../plugin.py:624
 #, fuzzy
 msgid "Disable sync with known transponders"
 msgstr "Ieškoti tik nežinomus transponderius"
 
+#: ../dmmBlindScan.py:599 ../plugin.py:306
 msgid "Exit"
 msgstr "Užverti"
 
+#: ../dmmBlindScan.py:682 ../plugin.py:626
 msgid "Filter out adjacent satellites"
 msgstr "Nufiltruoti gretimus palydovus"
 
+#: ../dmmBlindScan.py:667 ../dmmBlindScan.py:668 ../plugin.py:596
+#: ../plugin.py:597 ../plugin.py:608 ../plugin.py:609 ../plugin.py:611
+#: ../plugin.py:612
 #, fuzzy, python-format
 msgid "Frequency values must be between %d MHz and %d MHz"
 msgstr "Dažniai turi būti tarp 10700 MHz ir 12749 MHz"
 
+#: ../plugin.py:593 ../plugin.py:594
 #, fuzzy, python-format
 msgid "Frequency values must be between %d MHz and %d MHz (C-band)"
 msgstr "Dažniai turi būti tarp 3000 MHz ir 4199 MHz (C-band palydovams)"
 
+#: ../dmmBlindScan.py:540
 #, python-format
 msgid "Hardware blind scan is not supported by this tuner (%s)!"
 msgstr ""
 
+#: ../dmmBlindScan.py:675 ../plugin.py:619
 #, fuzzy
 msgid "If you select \"yes\" all channels on the satellite being searched will be deleted before starting the current search, yes (keep feeds) means the same but hold all feed services/transponders."
 msgstr "Jeigu čia pasirinksite 'taip', prieš pradedant paiešką, visi ankstesni šio palydovo kanalai bus ištrinti"
 
+#: ../dmmBlindScan.py:676 ../plugin.py:620
 msgid "If you select \"yes\" the scan will only save channels that are not encrypted; \"no\" will find encrypted and non-encrypted channels."
 msgstr "Jeigu čia pasirinksite 'taip', bus išsaugoti tik nekoduoti kanalai; pasirinkus 'ne', išsaugos ir koduotus, ir nekoduotus kanalus"
 
+#: ../dmmBlindScan.py:677 ../plugin.py:621
 msgid "If you select \"yes\" the scan will only search transponders not listed in satellites.xml"
 msgstr "Jeigu čia pasirinksite 'taip', bus ieškoma tik transponderiuose, nesančiuose satellites.xml faile"
 
+#: ../plugin.py:882
 msgid "It seems manufacturer does not support blind scan for this tuner."
 msgstr ""
 
+#: ../plugin.py:599
 msgid "LNB inversion"
 msgstr ""
 
+#: ../dmmBlindScan.py:658 ../plugin.py:583
 msgid "LNB of current satellite not compatible with plugin"
 msgstr ""
 
+#: ../plugin.py:1009
 msgid ""
 "Looking for available transponders.\n"
 "This will take a long time, please be patient."
@@ -181,6 +226,7 @@ msgstr ""
 "Ieškoma matomų transponderių.\n"
 "Tai užtruks ilgą laiką, būkite kantrūs."
 
+#: ../plugin.py:1292
 msgid ""
 "No new transponders found! \n"
 "\n"
@@ -192,69 +238,90 @@ msgstr ""
 "Pagal šiuos paieškos parametrus rasti tik\n"
 "transponderiai, jau esantys satellites.xml!"
 
+#: ../dmmBlindScan.py:879 ../plugin.py:1296
 msgid "No transponders were found for those search parameters!"
 msgstr "Pagal šiuos paieškos parametrus transponderių nerasta!"
 
+#: ../dmmBlindScan.py:532
 msgid "Nothing to scan! Press Exit!"
 msgstr ""
 
+#: ../dmmBlindScan.py:676 ../plugin.py:620
 msgid "Only free scan"
 msgstr "Ieškoti tik nekoduotų kanalų"
 
+#: ../dmmBlindScan.py:677 ../plugin.py:621
 msgid "Only scan unknown transponders"
 msgstr "Ieškoti tik nežinomus transponderius"
 
+#: ../plugin.py:322 ../plugin.py:1439
 msgid "Open xml file"
 msgstr ""
 
+#: ../dmmBlindScan.py:606 ../plugin.py:315
 msgid "Please setup your tuner configuration."
 msgstr "Sukonfigūruokite savo imtuvus."
 
+#: ../plugin.py:616
 msgid "Polarisation"
 msgstr "Poliarizacija"
 
+#: ../dmmBlindScan.py:669
 msgid "Polarisation, select horizontal, vertical or both."
 msgstr ""
 
+#: ../dmmBlindScan.py:669
 #, fuzzy
 msgid "Polarization"
 msgstr "Poliarizacija"
 
+#: ../dmmBlindScan.py:609
 #, fuzzy
 msgid "Press OK to start the scan."
 msgstr "Paieškai pradėti, spauskite 'ŽALIĄ'/'OK'"
 
+#: ../dmmBlindScan.py:122
 #, fuzzy
 msgid "Press green to start service searching."
 msgstr "Paieškai pradėti, spauskite 'ŽALIĄ'/'OK'"
 
+#: ../plugin.py:308 ../plugin.py:1466 ../plugin.py:1476
 msgid "Restore defaults"
 msgstr ""
 
+#: ../dmmBlindScan.py:652 ../plugin.py:577
 msgid "Satellite"
 msgstr "Palydovas"
 
+#: ../dmmBlindScan.py:688 ../plugin.py:187 ../plugin.py:311 ../plugin.py:629
 msgid "Scan"
 msgstr "Paieška"
 
+#: ../plugin.py:615
 msgid "Scan Step in MHz(TBS5925)"
 msgstr ""
 
+#: ../plugin.py:1625
 msgid "Scan satellites for new transponders"
 msgstr "Palydovuose ieškoti naujų transponderių"
 
+#: ../plugin.py:593 ../plugin.py:596 ../plugin.py:608 ../plugin.py:611
 msgid "Scan start frequency"
 msgstr "Pradinis paieškos dažnis"
 
+#: ../plugin.py:617
 msgid "Scan start symbolrate"
 msgstr "Pradinis paieškos simbolių dažnis"
 
+#: ../plugin.py:594 ../plugin.py:597 ../plugin.py:609 ../plugin.py:612
 msgid "Scan stop frequency"
 msgstr "Galutinis paieškos dažnis"
 
+#: ../plugin.py:618
 msgid "Scan stop symbolrate"
 msgstr "Galutinis paieškos simbolių dažnis"
 
+#: ../plugin.py:1290
 #, fuzzy, python-format
 msgid ""
 "Search completed\n"
@@ -266,6 +333,7 @@ msgstr ""
 "Plačiau rasite:\n"
 "%s"
 
+#: ../dmmBlindScan.py:873
 #, python-format
 msgid ""
 "Search completed. %d transponders found.\n"
@@ -278,152 +346,200 @@ msgstr ""
 "Plačiau rasite:\n"
 "%s"
 
+#: ../dmmBlindScan.py:665 ../plugin.py:589
 msgid "Search type"
 msgstr "Paieškos tipas"
 
+#: ../dmmBlindScan.py:530
 #, fuzzy
 msgid "Searching for active satellite transponders..."
 msgstr "Palydovuose ieškoti naujų transponderių"
 
+#: ../dmmBlindScan.py:643 ../plugin.py:569
 msgid "Select a tuner that is configured for the satellite you wish to search"
 msgstr "Pasirinkite imtuvą, sukonfigūruotą palydovui, kuriame norite ieškoti"
 
+#: ../plugin.py:188
 msgid "Select all"
 msgstr ""
 
+#: ../dmmBlindScan.py:673
 msgid "Select between 1 and 5. Higher numbers give more accurat search results."
 msgstr ""
 
+#: ../dmmBlindScan.py:652 ../plugin.py:577
 msgid "Select the satellite you wish to search"
 msgstr "Pasirinkite palydovą, kuriame norite ieškoti"
 
+#: ../plugin.py:186
 msgid ""
 "Select transponders and press green to scan.\n"
 "Press yellow to select all transponders and blue to deselect all."
 msgstr ""
 
+#: ../dmmBlindScan.py:114
 msgid "Service searching to be started MANUALLY by the user. To change this press green."
 msgstr ""
 
+#: ../dmmBlindScan.py:116
 msgid "Service searching will start AUTOMATICALLY. To change this press green."
 msgstr ""
 
+#: ../plugin.py:615
 msgid "Smaller steps takes longer but scan is more thorough"
 msgstr ""
 
+#: ../dmmBlindScan.py:484 ../plugin.py:440
 msgid "Sorry, this tuner is in use."
 msgstr "Atleiskite, šis imtuvas užimtas."
 
+#: ../dmmBlindScan.py:667
 #, fuzzy
 msgid "Start frequency"
 msgstr "Pradinis paieškos dažnis"
 
+#: ../dmmBlindScan.py:670
 #, fuzzy
 msgid "Start symbol rate"
 msgstr "Pradinis paieškos simbolių dažnis"
 
+#: ../plugin.py:1184
 #, python-format
 msgid "Step %d %d:%02d min"
 msgstr "Žingsnis %d %d:%02d min."
 
+#: ../dmmBlindScan.py:668
 #, fuzzy
 msgid "Stop frequency"
 msgstr "Galutinis paieškos dažnis"
 
+#: ../dmmBlindScan.py:671
 #, fuzzy
 msgid "Stop symbol rate"
 msgstr "Galutinis paieškos simbolių dažnis"
 
+#: ../dmmBlindScan.py:670 ../dmmBlindScan.py:671
 #, fuzzy, python-format
 msgid "Symbol rate values are in megasymbols; enter a value between %d and %d"
 msgstr "Simbolių dažnis išreikštas megasimboliais. Įrašykite reikšmę tarp 1 ir 44"
 
+#: ../plugin.py:617
 msgid "Symbol rate values are in megasymbols; enter a value between 1 and 44"
 msgstr "Simbolių dažnis išreikštas megasimboliais. Įrašykite reikšmę tarp 1 ir 44"
 
+#: ../plugin.py:618
 msgid "Symbol rate values are in megasymbols; enter a value between 2 and 45"
 msgstr "Simbolių dažnis išreikštas megasimboliais. Įrašykite reikšmę tarp 2 ir 45"
 
+#: ../dmmBlindScan.py:877 ../plugin.py:1298
 msgid "The blindscan run was cancelled by the user."
 msgstr "Akloji paieška nutraukta vartotojo."
 
+#: ../plugin.py:616
 #, python-format
 msgid "The suggested polarisation for this satellite is \"%s\""
 msgstr "Rekomenduojama poliarizacija šiam palydovui yra \"%s\""
 
+#: ../dmmBlindScan.py:121
 msgid "Transponder searching finished!"
 msgstr ""
 
+#: ../dmmBlindScan.py:643 ../plugin.py:569
 msgid "Tuner"
 msgstr "Imtuvas"
 
+#: ../dmmBlindScan.py:538
 #, fuzzy
 msgid "Use Sundtek full hardware blind scan!"
 msgstr "   Pradedama akloji paieška Sundtek įranga."
 
+#: ../dmmBlindScan.py:682 ../plugin.py:626
 msgid "When a neighbouring satellite is very strong this avoids searching transponders known to be coming from the neighbouring satellite."
 msgstr "Kai kaimyninis palydovas labai stiprus, taip išvengiama paieškos tarp transponderių, žinomai esančių kaimyniniame palydove"
 
+#: ../plugin.py:126 ../plugin.py:993 ../plugin.py:996
 msgid "circular left"
 msgstr "apskritiminė kairė"
 
+#: ../dmmBlindScan.py:985 ../dmmBlindScan.py:994 ../plugin.py:1526
+#: ../plugin.py:1535 ../plugin.py:1541
 #, fuzzy
 msgid "circular left/right"
 msgstr "apskritiminė dešinė"
 
+#: ../plugin.py:125 ../plugin.py:991 ../plugin.py:998
 msgid "circular right"
 msgstr "apskritiminė dešinė"
 
+#: ../plugin.py:124
 msgid "circular right and circular left"
 msgstr "apskritiminė dešinė ir apskritiminė kairė"
 
+#: ../plugin.py:196
 #, fuzzy
 msgid "don't scan"
 msgstr "Akloji paieška"
 
+#: ../dmmBlindScan.py:797 ../plugin.py:123 ../plugin.py:1000
 msgid "horizontal"
 msgstr "horizontali"
 
+#: ../plugin.py:118
 msgid "inverted"
 msgstr ""
 
+#: ../dmmBlindScan.py:737 ../dmmBlindScan.py:749 ../plugin.py:129
+#: ../plugin.py:135
 msgid "no"
 msgstr "ne"
 
+#: ../plugin.py:118
 msgid "normal"
 msgstr ""
 
+#: ../dmmBlindScan.py:792
 msgid "save to XML file"
 msgstr "išsaugoti XML faile"
 
+#: ../plugin.py:196
 #, fuzzy
 msgid "scan"
 msgstr "Akla paieška"
 
+#: ../dmmBlindScan.py:791 ../plugin.py:116
 msgid "scan for channels"
 msgstr "ieškoti kanalų"
 
+#: ../plugin.py:117
 #, fuzzy
 msgid "scan for transponders"
 msgstr "Ieškoti tik nežinomus transponderius"
 
+#: ../dmmBlindScan.py:750 ../plugin.py:136
 msgid "up to 1 degree"
 msgstr "iki 1 laipsnio"
 
+#: ../dmmBlindScan.py:751 ../plugin.py:137
 msgid "up to 2 degrees"
 msgstr "iki 2 laipsnių"
 
+#: ../dmmBlindScan.py:752 ../plugin.py:138
 msgid "up to 3 degrees"
 msgstr "iki 3 laipsnių"
 
+#: ../dmmBlindScan.py:796 ../plugin.py:122 ../plugin.py:1002
 msgid "vertical"
 msgstr "vertikali"
 
+#: ../dmmBlindScan.py:795 ../dmmBlindScan.py:945 ../plugin.py:121
+#: ../plugin.py:1487
 msgid "vertical and horizontal"
 msgstr "vertikali ir horizontali"
 
+#: ../dmmBlindScan.py:737 ../plugin.py:129
 msgid "yes"
 msgstr ""
 
+#: ../dmmBlindScan.py:737 ../plugin.py:129
 msgid "yes (keep feeds)"
 msgstr ""

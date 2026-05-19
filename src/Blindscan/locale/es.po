@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blindscan\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-03 07:54+0100\n"
+"POT-Creation-Date: 2026-04-08 10:12+0200\n"
 "PO-Revision-Date: 2018-12-29 23:13+0100\n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: OpenSPA <openspa.info>\n"
@@ -14,90 +14,116 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2\n"
 
+#: ../dmmBlindScan.py:486
 msgid ""
 "\n"
 "A recording is in progress."
 msgstr ""
 
+#: ../plugin.py:565
 msgid ""
 "\n"
 "The second slot of this dual tuner may not support blind scan."
 msgstr ""
 
+#: ../plugin.py:567
 msgid ""
 "\n"
 "You must use the power adapter."
 msgstr ""
 
+#: ../plugin.py:1005
 msgid "   Starting Sundtek hardware blind scan."
 msgstr ""
 
+#: ../plugin.py:738
 msgid " tuner."
 msgstr "Sintonizador."
 
+#: ../plugin.py:589
 msgid "\"channel scan\" searches for channels and saves them to your receiver; \"transponder scan\" does a transponder search and displays the results allowing user to select some or all transponder. Both options save the results in satellites.xml format under /tmp"
 msgstr "\"Buscar canales\" busca canales y los guarda en el receptor; \"Buscar transpondedores\" realiza una búsqueda de transpondedores y muestra el resultado permitiendo al usuario seleccionar alguno o todos los transpondedores. Ambas opciones guardan el resultado en un archivo .XML en /tmp, con el mismo formato que satellites.xml"
 
+#: ../dmmBlindScan.py:665
 #, fuzzy
 msgid "\"scan for channels\" searches for channels and saves them to your receiver; \"Save to XML\" does a transponder search and saves the results in satellites.xml format and stores it in /tmp"
 msgstr "\"Buscar canales\" busca canales y los guarda en el receptor; \"Buscar transpondedores\" realiza una búsqueda de transpondedores y muestra el resultado permitiendo al usuario seleccionar alguno o todos los transpondedores. Ambas opciones guardan el resultado en un archivo .XML en /tmp, con el mismo formato que satellites.xml"
 
+#: ../dmmBlindScan.py:347
 #, python-format
 msgid "%d transponder(s) found"
 msgstr "%d transpondedores encontrados"
 
+#: ../dmmBlindScan.py:322
 #, python-format
 msgid "%d transponders found at %d:%02d min"
 msgstr ""
 
+#: ../dmmBlindScan.py:352
 #, python-format
 msgid "%d:%02d/%d:%02dmin"
 msgstr ""
 
+#: ../dmmBlindScan.py:320
 #, python-format
 msgid "%dMHz scanned"
 msgstr "%dMhz escaneado"
 
+#: ../dmmBlindScan.py:673
 msgid "Accuracy (higher is better)"
 msgstr "Precisión (más alto es mejor)"
 
+#: ../dmmBlindScan.py:87
 msgid "Auto / Manual"
 msgstr ""
 
+#: ../plugin.py:1616 ../plugin.py:1625
 msgid "Blind scan"
 msgstr "Búsqueda ciega"
 
+#: ../dmmBlindScan.py:555
 msgid "Blind scan for DVB-S2 tuners"
 msgstr "Búsqueda ciega para sintonizadores DVB-S2"
 
+#: ../dmmBlindScan.py:79 ../plugin.py:158
 msgid "Blind scan state"
 msgstr "Estado búsqueda ciega"
 
+#: ../plugin.py:232
 msgid "Blindscan"
 msgstr "Búsqueda ciega"
 
+#: ../plugin.py:907 ../plugin.py:916 ../plugin.py:946 ../plugin.py:954
+#: ../plugin.py:968
 #, python-format
 msgid "Blindscan executable not found '%s'!"
 msgstr "Ejecutable de búsqueda ciega no encontrado en '%s'!"
 
+#: ../plugin.py:738
 msgid "Blindscan is not supported in "
 msgstr "Búsqueda ciega no soportada en"
 
+#: ../dmmBlindScan.py:681 ../plugin.py:625
 msgid "CAUTION: If you select \"yes\" the scan will not remove \"duplicated\" transponders from the list. Default is \"no\". Only change this if you understand why you are doing it."
 msgstr "CUIDADO: Si seleccionas \"Si\" la búsqueda no borrará los transpondedores duplicados de la lista. Por defecto \"No\". Solo cambia esto si entiendes lo que estás haciendo."
 
+#: ../dmmBlindScan.py:680 ../plugin.py:624
 msgid "CAUTION: If you select \"yes\" the scan will not sync with transponders listed in satellites.xml. Default is \"no\". Only change this if you understand why you are doing it."
 msgstr "CUIDADO: Si seleccionas \"Si\" la búsqueda no sincronizará con los transpondedores listados en satellites.xml. Por defecto \"No\". Solo cambia esto si entiendes lo que estás haciendo."
 
+#: ../plugin.py:599
 msgid "CAUTION: Only select \"inverted\" if you are using an inverted LNB (i.e. an LNB where the local oscillator frequency is greater than the scan frequency). Default is \"normal\". Only change this if you understand why you are doing it."
 msgstr "CUIDADO: Solo seleccionar \"invertido\" si estás usando un LNB invertido (por ejemplo un LNB en el que la frecuencia de oscilación local is mayor que la frecuencia de búsqueda). Por defecto \"normal\". Solo cambia esto si entiendes lo que estás haciendo."
 
+#: ../dmmBlindScan.py:86 ../plugin.py:163
 msgid "Cancel"
 msgstr ""
 
+#: ../dmmBlindScan.py:675 ../plugin.py:619
 msgid "Clear before scan"
 msgstr "Limpiar antes de buscar"
 
+#: ../plugin.py:1008
 #, fuzzy, python-format
 msgid ""
 "Current Status: %d/%d\n"
@@ -108,57 +134,76 @@ msgstr ""
 "Satélite: %s\n"
 "Polarización: %s  Rango de frecuencias: %d-%d MHz Symbol rates: %d-%d MHz"
 
+#: ../dmmBlindScan.py:785
 msgid "DVB-S + DVB-S2"
 msgstr ""
 
+#: ../dmmBlindScan.py:786
 msgid "DVB-S only"
 msgstr "Sólo DVB-S"
 
+#: ../plugin.py:189
 msgid "Deselect all"
 msgstr ""
 
+#: ../dmmBlindScan.py:681 ../plugin.py:625
 msgid "Disable remove duplicates"
 msgstr "Desactivar borrado de duplicados"
 
+#: ../dmmBlindScan.py:680 ../plugin.py:624
 msgid "Disable sync with known transponders"
 msgstr "Desactivar sincronización con transpondedores conocidos"
 
+#: ../dmmBlindScan.py:599 ../plugin.py:306
 msgid "Exit"
 msgstr "Salir"
 
+#: ../dmmBlindScan.py:682 ../plugin.py:626
 msgid "Filter out adjacent satellites"
 msgstr "Filtrar satélites adyacentes"
 
+#: ../dmmBlindScan.py:667 ../dmmBlindScan.py:668 ../plugin.py:596
+#: ../plugin.py:597 ../plugin.py:608 ../plugin.py:609 ../plugin.py:611
+#: ../plugin.py:612
 #, python-format
 msgid "Frequency values must be between %d MHz and %d MHz"
 msgstr "Las frecuencias deben estar comprendidas entre %d MHz y %d MHz"
 
+#: ../plugin.py:593 ../plugin.py:594
 #, python-format
 msgid "Frequency values must be between %d MHz and %d MHz (C-band)"
 msgstr "Las frecuencias deben estar comprendidas entre %d MHz y %d MHz (banda C)"
 
+#: ../dmmBlindScan.py:540
 #, python-format
 msgid "Hardware blind scan is not supported by this tuner (%s)!"
 msgstr "El hardware de búsqueda ciega no está soportado por este sintonizador (%s)!"
 
+#: ../dmmBlindScan.py:675 ../plugin.py:619
 msgid "If you select \"yes\" all channels on the satellite being searched will be deleted before starting the current search, yes (keep feeds) means the same but hold all feed services/transponders."
 msgstr "Si seleccionas \"Si\" todos los canales buscados del satélite se borrarán antes de iniciar la búsqueda actual, Si (mantener fuentes) significa lo mismo pero mantiene todas las fuentes de canales/transpondedores."
 
+#: ../dmmBlindScan.py:676 ../plugin.py:620
 msgid "If you select \"yes\" the scan will only save channels that are not encrypted; \"no\" will find encrypted and non-encrypted channels."
 msgstr "Si selecciona \"Si\", la búsqueda sólo guardará los canales no encriptados; elegir \"No\" buscará canales encriptados y no encriptados."
 
+#: ../dmmBlindScan.py:677 ../plugin.py:621
 msgid "If you select \"yes\" the scan will only search transponders not listed in satellites.xml"
 msgstr "Si selecciona \"Si\", sólo se buscarán transpondedores no incluidos en satellites.xml"
 
+#: ../plugin.py:882
 msgid "It seems manufacturer does not support blind scan for this tuner."
 msgstr ""
 
+#: ../plugin.py:599
 msgid "LNB inversion"
 msgstr "Inversión LNB"
 
+#: ../dmmBlindScan.py:658 ../plugin.py:583
 msgid "LNB of current satellite not compatible with plugin"
 msgstr ""
 
+#: ../plugin.py:1009
 msgid ""
 "Looking for available transponders.\n"
 "This will take a long time, please be patient."
@@ -166,6 +211,7 @@ msgstr ""
 "Buscando transpondedore disponibles.\n"
 "Esta búsqueda tardará en finalizar. Por favor, tenga paciencia."
 
+#: ../plugin.py:1292
 msgid ""
 "No new transponders found! \n"
 "\n"
@@ -177,67 +223,88 @@ msgstr ""
 "Sólo se han encontrado los transpondedores \n"
 "listados en satellites.xml para esos parámetros!"
 
+#: ../dmmBlindScan.py:879 ../plugin.py:1296
 msgid "No transponders were found for those search parameters!"
 msgstr "No se han encontrado transpondedores con esos parámetros de búsqueda!"
 
+#: ../dmmBlindScan.py:532
 msgid "Nothing to scan! Press Exit!"
 msgstr "Nada a escanear! Pulsa Salir (Exit)!"
 
+#: ../dmmBlindScan.py:676 ../plugin.py:620
 msgid "Only free scan"
 msgstr "Buscar sólo libres"
 
+#: ../dmmBlindScan.py:677 ../plugin.py:621
 msgid "Only scan unknown transponders"
 msgstr "Buscar sólo transpondedores desconocidos"
 
+#: ../plugin.py:322 ../plugin.py:1439
 msgid "Open xml file"
 msgstr "Abrir archivo xml"
 
+#: ../dmmBlindScan.py:606 ../plugin.py:315
 msgid "Please setup your tuner configuration."
 msgstr "Por favor configure las opciones del sintonizador."
 
+#: ../plugin.py:616
 msgid "Polarisation"
 msgstr "Polarización"
 
+#: ../dmmBlindScan.py:669
 msgid "Polarisation, select horizontal, vertical or both."
 msgstr ""
 
+#: ../dmmBlindScan.py:669
 #, fuzzy
 msgid "Polarization"
 msgstr "Polarización"
 
+#: ../dmmBlindScan.py:609
 msgid "Press OK to start the scan."
 msgstr "Pulsa OK para empezar la búsqueda."
 
+#: ../dmmBlindScan.py:122
 msgid "Press green to start service searching."
 msgstr "Pulsa verde para arrancar la búsqueda de canales."
 
+#: ../plugin.py:308 ../plugin.py:1466 ../plugin.py:1476
 msgid "Restore defaults"
 msgstr ""
 
+#: ../dmmBlindScan.py:652 ../plugin.py:577
 msgid "Satellite"
 msgstr "Satélite"
 
+#: ../dmmBlindScan.py:688 ../plugin.py:187 ../plugin.py:311 ../plugin.py:629
 msgid "Scan"
 msgstr "Buscar"
 
+#: ../plugin.py:615
 msgid "Scan Step in MHz(TBS5925)"
 msgstr ""
 
+#: ../plugin.py:1625
 msgid "Scan satellites for new transponders"
 msgstr "Buscando transpondedores nuevos"
 
+#: ../plugin.py:593 ../plugin.py:596 ../plugin.py:608 ../plugin.py:611
 msgid "Scan start frequency"
 msgstr "Frecuencia inicial de la búsqueda"
 
+#: ../plugin.py:617
 msgid "Scan start symbolrate"
 msgstr "Velocidad de símbolo inicial"
 
+#: ../plugin.py:594 ../plugin.py:597 ../plugin.py:609 ../plugin.py:612
 msgid "Scan stop frequency"
 msgstr "Frecuencia final de la búsqueda"
 
+#: ../plugin.py:618
 msgid "Scan stop symbolrate"
 msgstr "Velocidad de símbolo final"
 
+#: ../plugin.py:1290
 #, python-format
 msgid ""
 "Search completed\n"
@@ -248,6 +315,7 @@ msgstr ""
 "%d transpondedores encontrados en %d:%02d minutos.\n"
 "Detalles guardados en: %s"
 
+#: ../dmmBlindScan.py:873
 #, python-format
 msgid ""
 "Search completed. %d transponders found.\n"
@@ -260,25 +328,32 @@ msgstr ""
 "Datos guardados en:\n"
 "%s"
 
+#: ../dmmBlindScan.py:665 ../plugin.py:589
 msgid "Search type"
 msgstr "Tipo de búsqueda"
 
+#: ../dmmBlindScan.py:530
 #, fuzzy
 msgid "Searching for active satellite transponders..."
 msgstr "Intenta encontrar transpondedores de satélite usados..."
 
+#: ../dmmBlindScan.py:643 ../plugin.py:569
 msgid "Select a tuner that is configured for the satellite you wish to search"
 msgstr "Elija un sintonizador configurado para el satélite que quiera escanear"
 
+#: ../plugin.py:188
 msgid "Select all"
 msgstr ""
 
+#: ../dmmBlindScan.py:673
 msgid "Select between 1 and 5. Higher numbers give more accurat search results."
 msgstr ""
 
+#: ../dmmBlindScan.py:652 ../plugin.py:577
 msgid "Select the satellite you wish to search"
 msgstr "Seleccione el satélite que quiera escanear"
 
+#: ../plugin.py:186
 #, fuzzy
 msgid ""
 "Select transponders and press green to scan.\n"
@@ -287,124 +362,165 @@ msgstr ""
 "Seleccionar transpondedores y pulsar verde para buscar.\n"
 "Pulsa amarillo para seleccionar todos los transpondedores y azul para deseleccionarlos"
 
+#: ../dmmBlindScan.py:114
 msgid "Service searching to be started MANUALLY by the user. To change this press green."
 msgstr ""
 
+#: ../dmmBlindScan.py:116
 msgid "Service searching will start AUTOMATICALLY. To change this press green."
 msgstr ""
 
+#: ../plugin.py:615
 msgid "Smaller steps takes longer but scan is more thorough"
 msgstr "Pasos pequeños toman más tiempo pero la búsqueda es más completa"
 
+#: ../dmmBlindScan.py:484 ../plugin.py:440
 msgid "Sorry, this tuner is in use."
 msgstr "Este sintonizador está en uso."
 
+#: ../dmmBlindScan.py:667
 #, fuzzy
 msgid "Start frequency"
 msgstr "Frecuencia inicial de la búsqueda"
 
+#: ../dmmBlindScan.py:670
 #, fuzzy
 msgid "Start symbol rate"
 msgstr "Velocidad de símbolo inicial"
 
+#: ../plugin.py:1184
 #, python-format
 msgid "Step %d %d:%02d min"
 msgstr ""
 
+#: ../dmmBlindScan.py:668
 #, fuzzy
 msgid "Stop frequency"
 msgstr "Frecuencia final de la búsqueda"
 
+#: ../dmmBlindScan.py:671
 #, fuzzy
 msgid "Stop symbol rate"
 msgstr "Velocidad de símbolo final"
 
+#: ../dmmBlindScan.py:670 ../dmmBlindScan.py:671
 #, fuzzy, python-format
 msgid "Symbol rate values are in megasymbols; enter a value between %d and %d"
 msgstr "Los valores de velocidad de símbolo están en megasímbolos. Introduzca una cifra entre 1 y 44"
 
+#: ../plugin.py:617
 msgid "Symbol rate values are in megasymbols; enter a value between 1 and 44"
 msgstr "Los valores de velocidad de símbolo están en megasímbolos. Introduzca una cifra entre 1 y 44"
 
+#: ../plugin.py:618
 msgid "Symbol rate values are in megasymbols; enter a value between 2 and 45"
 msgstr "Los valores de velocidad de símbolo están en megasímbolos. Introduzca una cifra entre 2 y 45"
 
+#: ../dmmBlindScan.py:877 ../plugin.py:1298
 msgid "The blindscan run was cancelled by the user."
 msgstr "La búsqueda ciega ha sido cancelada por el usuario."
 
+#: ../plugin.py:616
 #, python-format
 msgid "The suggested polarisation for this satellite is \"%s\""
 msgstr "La polarización sugerida para este satélite es \"%s\""
 
+#: ../dmmBlindScan.py:121
 msgid "Transponder searching finished!"
 msgstr "Búsqueda transpondedor acabada!"
 
+#: ../dmmBlindScan.py:643 ../plugin.py:569
 msgid "Tuner"
 msgstr "Sintonizador"
 
+#: ../dmmBlindScan.py:538
 msgid "Use Sundtek full hardware blind scan!"
 msgstr "Utiliza hardware búsqueda ciega de Sundtek!"
 
+#: ../dmmBlindScan.py:682 ../plugin.py:626
 msgid "When a neighbouring satellite is very strong this avoids searching transponders known to be coming from the neighbouring satellite."
 msgstr "Cuando un satélite cercano es muy potente, se evita buscar transpondedores procedentes de ese satélite."
 
+#: ../plugin.py:126 ../plugin.py:993 ../plugin.py:996
 msgid "circular left"
 msgstr "Circular izda."
 
+#: ../dmmBlindScan.py:985 ../dmmBlindScan.py:994 ../plugin.py:1526
+#: ../plugin.py:1535 ../plugin.py:1541
 #, fuzzy
 msgid "circular left/right"
 msgstr "Circular dcha."
 
+#: ../plugin.py:125 ../plugin.py:991 ../plugin.py:998
 msgid "circular right"
 msgstr "Circular dcha."
 
+#: ../plugin.py:124
 msgid "circular right and circular left"
 msgstr "Circular derecha y circular izquierda"
 
+#: ../plugin.py:196
 msgid "don't scan"
 msgstr "No buscar"
 
+#: ../dmmBlindScan.py:797 ../plugin.py:123 ../plugin.py:1000
 msgid "horizontal"
 msgstr "Horizontal"
 
+#: ../plugin.py:118
 msgid "inverted"
 msgstr ""
 
+#: ../dmmBlindScan.py:737 ../dmmBlindScan.py:749 ../plugin.py:129
+#: ../plugin.py:135
 msgid "no"
 msgstr "No"
 
+#: ../plugin.py:118
 msgid "normal"
 msgstr ""
 
+#: ../dmmBlindScan.py:792
 msgid "save to XML file"
 msgstr "Guardar en archivo XML"
 
+#: ../plugin.py:196
 msgid "scan"
 msgstr "Buscar"
 
+#: ../dmmBlindScan.py:791 ../plugin.py:116
 msgid "scan for channels"
 msgstr "Buscar canales"
 
+#: ../plugin.py:117
 msgid "scan for transponders"
 msgstr "Buscar transpondedores"
 
+#: ../dmmBlindScan.py:750 ../plugin.py:136
 msgid "up to 1 degree"
 msgstr "Hasta 1º"
 
+#: ../dmmBlindScan.py:751 ../plugin.py:137
 msgid "up to 2 degrees"
 msgstr "Hasta 2º"
 
+#: ../dmmBlindScan.py:752 ../plugin.py:138
 msgid "up to 3 degrees"
 msgstr "Hasta 3º"
 
+#: ../dmmBlindScan.py:796 ../plugin.py:122 ../plugin.py:1002
 msgid "vertical"
 msgstr "Vertical"
 
+#: ../dmmBlindScan.py:795 ../dmmBlindScan.py:945 ../plugin.py:121
+#: ../plugin.py:1487
 msgid "vertical and horizontal"
 msgstr "Vertical y Horizontal"
 
+#: ../dmmBlindScan.py:737 ../plugin.py:129
 msgid "yes"
 msgstr "sí"
 
+#: ../dmmBlindScan.py:737 ../plugin.py:129
 msgid "yes (keep feeds)"
 msgstr "sí (mantener feeds)"

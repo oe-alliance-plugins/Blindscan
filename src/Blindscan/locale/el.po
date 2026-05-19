@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blindscan Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-03 07:54+0100\n"
+"POT-Creation-Date: 2026-04-08 10:12+0200\n"
 "PO-Revision-Date: 2018-11-26 04:37+0200\n"
 "Last-Translator: MCelliot_g <mcelliot_g@hotmail.com>\n"
 "Language-Team: MCelliot_g <mcelliot_g@hotmail.com>\n"
@@ -14,11 +14,13 @@ msgstr ""
 "X-Generator: Poedit 2.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
+#: ../dmmBlindScan.py:486
 msgid ""
 "\n"
 "A recording is in progress."
 msgstr ""
 
+#: ../plugin.py:565
 msgid ""
 "\n"
 "The second slot of this dual tuner may not support blind scan."
@@ -26,6 +28,7 @@ msgstr ""
 "\n"
 "Η δεύτερη θύρα του διπλού tuner μπορεί να μην υποστηρίζει τυφλή ανίχνευση."
 
+#: ../plugin.py:567
 msgid ""
 "\n"
 "You must use the power adapter."
@@ -33,76 +36,99 @@ msgstr ""
 "\n"
 "Πρέπει να χρησιμοποιηθεί το τροδοφοδοτικό."
 
+#: ../plugin.py:1005
 msgid "   Starting Sundtek hardware blind scan."
 msgstr "   Εκκίνηση τυφλής ανίχνευσης Sundtek."
 
+#: ../plugin.py:738
 msgid " tuner."
 msgstr " tuner."
 
+#: ../plugin.py:589
 msgid "\"channel scan\" searches for channels and saves them to your receiver; \"transponder scan\" does a transponder search and displays the results allowing user to select some or all transponder. Both options save the results in satellites.xml format under /tmp"
 msgstr "Η \"ανίχνευση για κανάλια\" ψάχνει για κανάλια και τα αποθηκεύει στο δέκτη σας: η \"ανίχνευση για αναμεταδότες\" εμφανίζει τους αναμεταδότες που βρέθηκαν, επιτρέποντας στο χρήστη να επιλέξει έναν ή όλους. Και οι δύο επιλογές αποθηκεύουν το αποτέλεσμα στο /tmp σε ένα αρχείο satellites.xml"
 
+#: ../dmmBlindScan.py:665
 #, fuzzy
 msgid "\"scan for channels\" searches for channels and saves them to your receiver; \"Save to XML\" does a transponder search and saves the results in satellites.xml format and stores it in /tmp"
 msgstr "Η \"ανίχνευση για κανάλια\" ψάχνει για κανάλια και τα αποθηκεύει στο δέκτη σας: η \"ανίχνευση για αναμεταδότες\" εμφανίζει τους αναμεταδότες που βρέθηκαν, επιτρέποντας στο χρήστη να επιλέξει έναν ή όλους. Και οι δύο επιλογές αποθηκεύουν το αποτέλεσμα στο /tmp σε ένα αρχείο satellites.xml"
 
+#: ../dmmBlindScan.py:347
 #, python-format
 msgid "%d transponder(s) found"
 msgstr ""
 
+#: ../dmmBlindScan.py:322
 #, python-format
 msgid "%d transponders found at %d:%02d min"
 msgstr ""
 
+#: ../dmmBlindScan.py:352
 #, fuzzy, python-format
 msgid "%d:%02d/%d:%02dmin"
 msgstr "Βήμα %d %d:%02d λεπτά"
 
+#: ../dmmBlindScan.py:320
 #, python-format
 msgid "%dMHz scanned"
 msgstr ""
 
+#: ../dmmBlindScan.py:673
 msgid "Accuracy (higher is better)"
 msgstr ""
 
+#: ../dmmBlindScan.py:87
 msgid "Auto / Manual"
 msgstr ""
 
+#: ../plugin.py:1616 ../plugin.py:1625
 msgid "Blind scan"
 msgstr "Τυφλή ανίχνευση"
 
+#: ../dmmBlindScan.py:555
 msgid "Blind scan for DVB-S2 tuners"
 msgstr ""
 
+#: ../dmmBlindScan.py:79 ../plugin.py:158
 msgid "Blind scan state"
 msgstr "Κατάσταση τυφλής ανίχνευσης"
 
+#: ../plugin.py:232
 msgid "Blindscan"
 msgstr "Τυφλή ανίχνευση"
 
+#: ../plugin.py:907 ../plugin.py:916 ../plugin.py:946 ../plugin.py:954
+#: ../plugin.py:968
 #, python-format
 msgid "Blindscan executable not found '%s'!"
 msgstr ""
 
+#: ../plugin.py:738
 msgid "Blindscan is not supported in "
 msgstr "Η τυφλή ανίχνευση δεν υποστηρίζεται από το "
 
+#: ../dmmBlindScan.py:681 ../plugin.py:625
 msgid "CAUTION: If you select \"yes\" the scan will not remove \"duplicated\" transponders from the list. Default is \"no\". Only change this if you understand why you are doing it."
 msgstr "ΠΡΟΣΟΧΗ: Αν επιλεγεί το \"ναι\", η ανίχνευση δεν θα αφαιρέσει τους \"διπλότυπους\" αναμεταδότες από τη λίστα. Προεπιλογή \"όχι\". Αλλάξτε αυτή την επιλογή αν κατανοείτε τι κάνετε."
 
+#: ../dmmBlindScan.py:680 ../plugin.py:624
 msgid "CAUTION: If you select \"yes\" the scan will not sync with transponders listed in satellites.xml. Default is \"no\". Only change this if you understand why you are doing it."
 msgstr "ΠΡΟΣΟΧΗ: Αν επιλέξετε \"ναι\" η ανίχνευση δεν θα συγχρονιστεί με τους αναμεταδότες που υπάρχουν ήδη στο satellites.xml. Προεπιλογή \"όχι\". Αλλάξτε την επιλογή μόνο αν γνωρίζετε τι κάνετε."
 
+#: ../plugin.py:599
 #, fuzzy
 msgid "CAUTION: Only select \"inverted\" if you are using an inverted LNB (i.e. an LNB where the local oscillator frequency is greater than the scan frequency). Default is \"normal\". Only change this if you understand why you are doing it."
 msgstr "ΠΡΟΣΟΧΗ: Αν επιλεγεί το \"ναι\", η ανίχνευση δεν θα αφαιρέσει τους \"διπλότυπους\" αναμεταδότες από τη λίστα. Προεπιλογή \"όχι\". Αλλάξτε αυτή την επιλογή αν κατανοείτε τι κάνετε."
 
+#: ../dmmBlindScan.py:86 ../plugin.py:163
 msgid "Cancel"
 msgstr "Ακύρωση"
 
+#: ../dmmBlindScan.py:675 ../plugin.py:619
 msgid "Clear before scan"
 msgstr "Εκκαθάριση πριν την ανίχνευση"
 
+#: ../plugin.py:1008
 #, fuzzy, python-format
 msgid ""
 "Current Status: %d/%d\n"
@@ -113,57 +139,76 @@ msgstr ""
 "Δορυφόρος: %s \n"
 "Πόλωση: %s  Εύρος συχνοτήτων: %d - %d MHz  Ρυθμοί συμβόλων: %d - %d Ks/s"
 
+#: ../dmmBlindScan.py:785
 msgid "DVB-S + DVB-S2"
 msgstr ""
 
+#: ../dmmBlindScan.py:786
 msgid "DVB-S only"
 msgstr ""
 
+#: ../plugin.py:189
 msgid "Deselect all"
 msgstr "Αποεπιλογή όλων"
 
+#: ../dmmBlindScan.py:681 ../plugin.py:625
 msgid "Disable remove duplicates"
 msgstr "Απενεργοποίηση αφαίρεσης διπλοτύπων"
 
+#: ../dmmBlindScan.py:680 ../plugin.py:624
 msgid "Disable sync with known transponders"
 msgstr "Απενεργοποίηση συγχρονισμού με γνωστούς αναμεταδότες"
 
+#: ../dmmBlindScan.py:599 ../plugin.py:306
 msgid "Exit"
 msgstr "Έξοδος"
 
+#: ../dmmBlindScan.py:682 ../plugin.py:626
 msgid "Filter out adjacent satellites"
 msgstr "Φιλτράρισμα παρακείμενων δορυφόρων"
 
+#: ../dmmBlindScan.py:667 ../dmmBlindScan.py:668 ../plugin.py:596
+#: ../plugin.py:597 ../plugin.py:608 ../plugin.py:609 ../plugin.py:611
+#: ../plugin.py:612
 #, python-format
 msgid "Frequency values must be between %d MHz and %d MHz"
 msgstr "Οι τιμές συχνοτήτων πρέπει να είναι μεταξύ %d MHz και %d MHz"
 
+#: ../plugin.py:593 ../plugin.py:594
 #, python-format
 msgid "Frequency values must be between %d MHz and %d MHz (C-band)"
 msgstr "Οι τιμές συχνοτήτων πρέπει να είναι μεταξύ %d MHz και %d MHz (μπάντα C)"
 
+#: ../dmmBlindScan.py:540
 #, fuzzy, python-format
 msgid "Hardware blind scan is not supported by this tuner (%s)!"
 msgstr "Η τυφλή ανίχνευση δεν υποστηρίζεται από το "
 
+#: ../dmmBlindScan.py:675 ../plugin.py:619
 msgid "If you select \"yes\" all channels on the satellite being searched will be deleted before starting the current search, yes (keep feeds) means the same but hold all feed services/transponders."
 msgstr "Αν επιλέξετε \"ναι\" όλα τα κανάλια του δορυφόρου που ανιχνεύεται θα διαγραφούν πριν την εκκίνηση της ανίχνευσης, το \"διατήρηση των feeds\", σημαίνει το ίδιο αλλά θα διατηρηθούν όλοι οι αναμεταδότες/υπηρεσίες feeds."
 
+#: ../dmmBlindScan.py:676 ../plugin.py:620
 msgid "If you select \"yes\" the scan will only save channels that are not encrypted; \"no\" will find encrypted and non-encrypted channels."
 msgstr "Αν επιλέξετε \"ναι\" η ανίχνευση θα αποθηκεύσει μόνο τα κανάλια που δεν είναι κωδικοποιημένα: \"όχι\" θα ανιχνευθούν κωδικοποιημένα και ελεύθερα κανάλια."
 
+#: ../dmmBlindScan.py:677 ../plugin.py:621
 msgid "If you select \"yes\" the scan will only search transponders not listed in satellites.xml"
 msgstr "Αν επιλέξετε \"ναι\" η ανίχνευση θα ψάξει μόνο αναμεταδότες που δεν υπάρχουν στο satellites.xml"
 
+#: ../plugin.py:882
 msgid "It seems manufacturer does not support blind scan for this tuner."
 msgstr "Φαίνεται ότι ο κατασκευαστής δεν υποστηρίζει την τυφλή ανίχνευση για αυτό το tuner."
 
+#: ../plugin.py:599
 msgid "LNB inversion"
 msgstr ""
 
+#: ../dmmBlindScan.py:658 ../plugin.py:583
 msgid "LNB of current satellite not compatible with plugin"
 msgstr "To LNB του συγκεκριμένου δορυφόρου είναι ασύμβατο με το πρόσθετο"
 
+#: ../plugin.py:1009
 msgid ""
 "Looking for available transponders.\n"
 "This will take a long time, please be patient."
@@ -171,6 +216,7 @@ msgstr ""
 "Ανίχνευση διαθέσιμων αναμεταδοτών.\n"
 "Αυτό μπορεί να διαρκέσει αρκετά, παρακαλώ περιμένετε."
 
+#: ../plugin.py:1292
 msgid ""
 "No new transponders found! \n"
 "\n"
@@ -182,67 +228,88 @@ msgstr ""
 "Μόνο αναμεταδότες που υπάρχουν ήδη στο satellites.xml \n"
 "έχουν βρεθεί με αυτές τις παραμέτρους ανίχνευσης!"
 
+#: ../dmmBlindScan.py:879 ../plugin.py:1296
 msgid "No transponders were found for those search parameters!"
 msgstr "Δεν βρέθηκαν αναμεταδότες με αυτές τις παραμέτρους ανίχνευσης!"
 
+#: ../dmmBlindScan.py:532
 msgid "Nothing to scan! Press Exit!"
 msgstr ""
 
+#: ../dmmBlindScan.py:676 ../plugin.py:620
 msgid "Only free scan"
 msgstr "Μόνο τα ελευθέρα"
 
+#: ../dmmBlindScan.py:677 ../plugin.py:621
 msgid "Only scan unknown transponders"
 msgstr "Ανίχνευση μόνο των αγνώστων αναμεταδοτών"
 
+#: ../plugin.py:322 ../plugin.py:1439
 msgid "Open xml file"
 msgstr "Άνοιγμα αρχείου xml"
 
+#: ../dmmBlindScan.py:606 ../plugin.py:315
 msgid "Please setup your tuner configuration."
 msgstr "Παρακαλώ ρυθμίστε το tuner σας."
 
+#: ../plugin.py:616
 msgid "Polarisation"
 msgstr "Πόλωση"
 
+#: ../dmmBlindScan.py:669
 msgid "Polarisation, select horizontal, vertical or both."
 msgstr ""
 
+#: ../dmmBlindScan.py:669
 #, fuzzy
 msgid "Polarization"
 msgstr "Πόλωση"
 
+#: ../dmmBlindScan.py:609
 msgid "Press OK to start the scan."
 msgstr ""
 
+#: ../dmmBlindScan.py:122
 msgid "Press green to start service searching."
 msgstr ""
 
+#: ../plugin.py:308 ../plugin.py:1466 ../plugin.py:1476
 msgid "Restore defaults"
 msgstr ""
 
+#: ../dmmBlindScan.py:652 ../plugin.py:577
 msgid "Satellite"
 msgstr "Δορυφόρος"
 
+#: ../dmmBlindScan.py:688 ../plugin.py:187 ../plugin.py:311 ../plugin.py:629
 msgid "Scan"
 msgstr "Ανίχνευση"
 
+#: ../plugin.py:615
 msgid "Scan Step in MHz(TBS5925)"
 msgstr "Βήμα σάρωσης σε MHz (TBS5925)"
 
+#: ../plugin.py:1625
 msgid "Scan satellites for new transponders"
 msgstr "Ανίχνευση δορυφόρων για νέους αναμεταδότες"
 
+#: ../plugin.py:593 ../plugin.py:596 ../plugin.py:608 ../plugin.py:611
 msgid "Scan start frequency"
 msgstr "Συχνότητα εκκίνησης"
 
+#: ../plugin.py:617
 msgid "Scan start symbolrate"
 msgstr "Ρυθμός συμβόλων εκκίνησης"
 
+#: ../plugin.py:594 ../plugin.py:597 ../plugin.py:609 ../plugin.py:612
 msgid "Scan stop frequency"
 msgstr "Τελική συχνότητα"
 
+#: ../plugin.py:618
 msgid "Scan stop symbolrate"
 msgstr "Τελικός ρυθμός συμβόλων"
 
+#: ../plugin.py:1290
 #, python-format
 msgid ""
 "Search completed\n"
@@ -253,6 +320,7 @@ msgstr ""
 "Βρέθηκαν %d αναμεταδότες σε %d:%02d λεπτά.\n"
 "Οι λεπτομέρειες αποθηκεύτηκαν στο: %s"
 
+#: ../dmmBlindScan.py:873
 #, fuzzy, python-format
 msgid ""
 "Search completed. %d transponders found.\n"
@@ -264,25 +332,32 @@ msgstr ""
 "Βρέθηκαν %d αναμεταδότες σε %d:%02d λεπτά.\n"
 "Οι λεπτομέρειες αποθηκεύτηκαν στο: %s"
 
+#: ../dmmBlindScan.py:665 ../plugin.py:589
 msgid "Search type"
 msgstr "Τύπος ανίχνευσης"
 
+#: ../dmmBlindScan.py:530
 #, fuzzy
 msgid "Searching for active satellite transponders..."
 msgstr "Ανίχνευση δορυφόρων για νέους αναμεταδότες"
 
+#: ../dmmBlindScan.py:643 ../plugin.py:569
 msgid "Select a tuner that is configured for the satellite you wish to search"
 msgstr "Επιλέξτε ένα tuner που έχει ρυθμιστεί για το δορυφόρο που θέλετε να ανιχνεύσετε"
 
+#: ../plugin.py:188
 msgid "Select all"
 msgstr "Επιλογή όλων"
 
+#: ../dmmBlindScan.py:673
 msgid "Select between 1 and 5. Higher numbers give more accurat search results."
 msgstr ""
 
+#: ../dmmBlindScan.py:652 ../plugin.py:577
 msgid "Select the satellite you wish to search"
 msgstr "Επιλέξτε το δορυφόρο που θέλετε να ανιχνεύσετε"
 
+#: ../plugin.py:186
 msgid ""
 "Select transponders and press green to scan.\n"
 "Press yellow to select all transponders and blue to deselect all."
@@ -290,124 +365,165 @@ msgstr ""
 "Επιλέξτε αναμεταδότες και πιέστε το πράσινο για να ανιχνευθούν.\n"
 "Πιέστε το κίτρινο για επιλογή όλων και το μπλε για αποεπιλογή όλων."
 
+#: ../dmmBlindScan.py:114
 msgid "Service searching to be started MANUALLY by the user. To change this press green."
 msgstr ""
 
+#: ../dmmBlindScan.py:116
 msgid "Service searching will start AUTOMATICALLY. To change this press green."
 msgstr ""
 
+#: ../plugin.py:615
 msgid "Smaller steps takes longer but scan is more thorough"
 msgstr "Τα μικρότερα βήματα διαρκούν περισσότερο αλλά η ανίχνευση είναι πιο ακριβής"
 
+#: ../dmmBlindScan.py:484 ../plugin.py:440
 msgid "Sorry, this tuner is in use."
 msgstr "Λυπούμαστε, αυτό το tuner χρησιμοποιείται."
 
+#: ../dmmBlindScan.py:667
 #, fuzzy
 msgid "Start frequency"
 msgstr "Συχνότητα εκκίνησης"
 
+#: ../dmmBlindScan.py:670
 #, fuzzy
 msgid "Start symbol rate"
 msgstr "Ρυθμός συμβόλων εκκίνησης"
 
+#: ../plugin.py:1184
 #, python-format
 msgid "Step %d %d:%02d min"
 msgstr "Βήμα %d %d:%02d λεπτά"
 
+#: ../dmmBlindScan.py:668
 #, fuzzy
 msgid "Stop frequency"
 msgstr "Τελική συχνότητα"
 
+#: ../dmmBlindScan.py:671
 #, fuzzy
 msgid "Stop symbol rate"
 msgstr "Τελικός ρυθμός συμβόλων"
 
+#: ../dmmBlindScan.py:670 ../dmmBlindScan.py:671
 #, fuzzy, python-format
 msgid "Symbol rate values are in megasymbols; enter a value between %d and %d"
 msgstr "Οι τιμές του ρυθμού συμβόλων είναι σε μεγασύμβολα: εισάγετε μία τιμή μεταξύ 1 και 44"
 
+#: ../plugin.py:617
 msgid "Symbol rate values are in megasymbols; enter a value between 1 and 44"
 msgstr "Οι τιμές του ρυθμού συμβόλων είναι σε μεγασύμβολα: εισάγετε μία τιμή μεταξύ 1 και 44"
 
+#: ../plugin.py:618
 msgid "Symbol rate values are in megasymbols; enter a value between 2 and 45"
 msgstr "Οι τιμές του ρυθμού συμβόλων είναι σε μεγασύμβολα: εισάγετε μία τιμή μεταξύ 2 και 45"
 
+#: ../dmmBlindScan.py:877 ../plugin.py:1298
 msgid "The blindscan run was cancelled by the user."
 msgstr "Η τυφλή ανίχνευση ακυρώθηκε από το χρήστη."
 
+#: ../plugin.py:616
 #, python-format
 msgid "The suggested polarisation for this satellite is \"%s\""
 msgstr "Η προτεινόμενη πόλωση για αυτό το δορυφόρο είναι \"%s\""
 
+#: ../dmmBlindScan.py:121
 msgid "Transponder searching finished!"
 msgstr ""
 
+#: ../dmmBlindScan.py:643 ../plugin.py:569
 msgid "Tuner"
 msgstr "Tuner"
 
+#: ../dmmBlindScan.py:538
 #, fuzzy
 msgid "Use Sundtek full hardware blind scan!"
 msgstr "   Εκκίνηση τυφλής ανίχνευσης Sundtek."
 
+#: ../dmmBlindScan.py:682 ../plugin.py:626
 msgid "When a neighbouring satellite is very strong this avoids searching transponders known to be coming from the neighbouring satellite."
 msgstr "Όταν ένας γειτονικός δορυφόρος είναι πολύ δυνατός, αυτό αποτρέπει την ανίχνευση αναμεταδοτών που είναι γνωστό ότι ανήκουν σε αυτόν."
 
+#: ../plugin.py:126 ../plugin.py:993 ../plugin.py:996
 msgid "circular left"
 msgstr "αριστερόστροφη"
 
+#: ../dmmBlindScan.py:985 ../dmmBlindScan.py:994 ../plugin.py:1526
+#: ../plugin.py:1535 ../plugin.py:1541
 msgid "circular left/right"
 msgstr "αριστερόστροφη/δεξιόστροφη"
 
+#: ../plugin.py:125 ../plugin.py:991 ../plugin.py:998
 msgid "circular right"
 msgstr "δεξιόστροφη"
 
+#: ../plugin.py:124
 msgid "circular right and circular left"
 msgstr "δεξιόστροφη και αριστερόστροφη"
 
+#: ../plugin.py:196
 msgid "don't scan"
 msgstr "χωρίς ανίχνευση"
 
+#: ../dmmBlindScan.py:797 ../plugin.py:123 ../plugin.py:1000
 msgid "horizontal"
 msgstr "οριζόντια"
 
+#: ../plugin.py:118
 msgid "inverted"
 msgstr ""
 
+#: ../dmmBlindScan.py:737 ../dmmBlindScan.py:749 ../plugin.py:129
+#: ../plugin.py:135
 msgid "no"
 msgstr "όχι"
 
+#: ../plugin.py:118
 msgid "normal"
 msgstr ""
 
+#: ../dmmBlindScan.py:792
 msgid "save to XML file"
 msgstr ""
 
+#: ../plugin.py:196
 msgid "scan"
 msgstr "ανίχνευση"
 
+#: ../dmmBlindScan.py:791 ../plugin.py:116
 msgid "scan for channels"
 msgstr "ανίχνευση για κανάλια"
 
+#: ../plugin.py:117
 msgid "scan for transponders"
 msgstr "ανίχνευση για αναμεταδότες"
 
+#: ../dmmBlindScan.py:750 ../plugin.py:136
 msgid "up to 1 degree"
 msgstr "έως 1 μοίρα"
 
+#: ../dmmBlindScan.py:751 ../plugin.py:137
 msgid "up to 2 degrees"
 msgstr "έως 2 μοίρες"
 
+#: ../dmmBlindScan.py:752 ../plugin.py:138
 msgid "up to 3 degrees"
 msgstr "έως 3 μοίρες"
 
+#: ../dmmBlindScan.py:796 ../plugin.py:122 ../plugin.py:1002
 msgid "vertical"
 msgstr "κάθετη"
 
+#: ../dmmBlindScan.py:795 ../dmmBlindScan.py:945 ../plugin.py:121
+#: ../plugin.py:1487
 msgid "vertical and horizontal"
 msgstr "κάθετη και οριζόντια"
 
+#: ../dmmBlindScan.py:737 ../plugin.py:129
 msgid "yes"
 msgstr "ναι"
 
+#: ../dmmBlindScan.py:737 ../plugin.py:129
 msgid "yes (keep feeds)"
 msgstr "ναι (διατήρηση των feeds)"
