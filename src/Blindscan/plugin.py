@@ -11,6 +11,14 @@ from Components.config import config, ConfigBoolean, ConfigInteger, getConfigLis
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.NimManager import getConfigSatlist, nimmanager
+
+try:
+	from Components.NimManager import isPolarizationDependentDiseqc
+except ImportError:
+	# Other images and older OpenATV versions do not have this optional SEC mode.
+	def isPolarizationDependentDiseqc(lnb):
+		return False
+
 from Components.Sources.FrontendStatus import FrontendStatus
 from Components.Sources.StaticText import StaticText
 from Components.TuneTest import Tuner
@@ -266,6 +274,7 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 		self.Sundtek_pol = ""
 		self.Sundtek_band = ""
 		self.SundtekScan = False
+		self.polarizationDependentDiseqc = False
 		self.offset = 0
 		self.start_time = time()
 		self.orb_pos = 0
@@ -650,6 +659,11 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 		self.close(False)
 
 	def keyGo(self):
+		if self.polarizationDependentDiseqc:
+			# These helpers can set voltage/tone themselves, bypassing Enigma2 SEC.
+			# Do not scan the wrong port or mislabel results with a fixed LNB voltage.
+			self.session.open(MessageBox, _("This external blindscan utility does not support DiSEqC ports selected by polarization. Use a manual or automatic service scan for this LNB."), MessageBox.TYPE_ERROR)
+			return
 		self.saveConfig()
 		print("[Blindscan][keyGo] started")
 		self.start_time = time()
@@ -1479,6 +1493,7 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 
 	def SatBandCheck(self):
 		# search for LNB type in Universal, C band, or user defined.
+		self.polarizationDependentDiseqc = False
 		cur_orb_pos = self.getOrbPos()
 		self.is_c_band_scan = False
 		self.is_Ku_band_scan = False
@@ -1512,6 +1527,7 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 			currLnb = nimconfig.advanced.lnb[lnbnum]
 			if isinstance(currLnb, ConfigNothing):
 				return False
+			self.polarizationDependentDiseqc = isPolarizationDependentDiseqc(currLnb)
 			lof = currLnb.lof.getValue()
 			print("[Blindscan][isLNB] LNB type: ", lof)
 			if lof == "universal_lnb":
