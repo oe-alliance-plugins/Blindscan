@@ -1,43 +1,35 @@
-from __future__ import print_function
-from __future__ import absolute_import
-from __future__ import division
-# for localized messages
-from . import _
+from __future__ import absolute_import, division, print_function
+from ast import literal_eval
+from os.path import exists
+from time import sleep, strftime, time
 
 from enigma import eComponentScan, eConsoleAppContainer, eDVBFrontendParametersSatellite, eDVBResourceManager, eTimer
 
 from Components.ActionMap import ActionMap
-from Components.config import config, ConfigBoolean, ConfigInteger, getConfigListEntry, ConfigNothing, ConfigSelection, ConfigSubsection, ConfigYesNo
+from Components.config import ConfigBoolean, ConfigInteger, ConfigNothing, ConfigSelection, ConfigSubsection, ConfigYesNo, config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.NimManager import getConfigSatlist, nimmanager
-
-try:
-	from Components.NimManager import isPolarizationDependentDiseqc
-except ImportError:
-	# Other images and older OpenATV versions do not have this optional SEC mode.
-	def isPolarizationDependentDiseqc(lnb):
-		return False
-
+from Components.TuneTest import Tuner
 from Components.Sources.FrontendStatus import FrontendStatus
 from Components.Sources.StaticText import StaticText
-from Components.TuneTest import Tuner
-
 from Plugins.Plugin import PluginDescriptor
-
 from Screens.Console import Console
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.ServiceScan import ServiceScan
-
 from Tools.BoundFunction import boundFunction
 
-import os
+from . import _
+from .filters import TransponderFiltering
+from .gbbs import gigablueBlindscan
 
-from . filters import TransponderFiltering  # imported from Blindscan folder
-
-# used for the XML file
-from time import strftime, time
+# Optional framework imports stay guarded for other images and older versions.
+try:
+	from Components.NimManager import isPolarizationDependentDiseqc
+except ImportError:
+	def isPolarizationDependentDiseqc(lnb):
+		return False
 
 # root2gold based on https://github.com/DigitalDevices/dddvb/blob/master/apps/pls.c
 
@@ -50,7 +42,7 @@ try:
 	IMGVER = BoxInfo.getItem("imageversion")
 	IMGBUILD = BoxInfo.getItem("imagebuild")
 except ImportError:
-	from boxbranding import getImageDistro, getImageBuild, getBrandOEM, getMachineBuild, getBoxType, getImageVersion
+	from boxbranding import getBoxType, getBrandOEM, getImageBuild, getImageDistro, getImageVersion, getMachineBuild
 	IMAGEDISTRO = getImageDistro()
 	BRAND = getBrandOEM()
 	MACHINEBUILD = getMachineBuild()
@@ -270,6 +262,12 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 		self.status = ""
 
 		self.blindscan_session = None
+		self.blindscan_container = None
+		self.gbbsScan = False
+		self.gbbsRunning = False
+		self.gbbsCancelCallback = None
+		self.gbbsOutput = ""
+		self.gbbsTransponders = 0
 		self.tmpstr = ""
 		self.Sundtek_pol = ""
 		self.Sundtek_band = ""
@@ -327,7 +325,7 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 		self.nimSockets = self.ScanNimsocket()
 		self.makeNimSocket()
 
-		if XML_FILE is not None and os.path.exists(XML_FILE):
+		if XML_FILE is not None and exists(XML_FILE):
 			self["key_yellow"].setText(_("Open xml file"))
 			self["actions3"].setEnabled(True)
 		else:
@@ -364,7 +362,10 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 			elif line.startswith('Name:'):
 				splitLines = line.split()
 				try:
-					if splitLines[1].startswith('BCM'):
+					gbbsName = gigablueBlindscan.getNimName(line)
+					if gbbsName:
+						sName = gbbsName
+					elif splitLines[1].startswith('BCM'):
 						sName = splitLines[1]
 					else:
 						sName = splitLines[3][4:-1]
@@ -652,6 +653,8 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 
 	def keyCancel(self):
 		self.saveConfig()
+		if self.gbbsRunning:
+			return
 		if self.clockTimer:
 			self.clockTimer.stop()
 		self.releaseFrontend()
@@ -659,6 +662,8 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 		self.close(False)
 
 	def keyGo(self):
+		if self.gbbsRunning:
+			return
 		if self.polarizationDependentDiseqc:
 			# These helpers can set voltage/tone themselves, bypassing Enigma2 SEC.
 			# Do not scan the wrong port or mislabel results with a fixed LNB voltage.
@@ -806,6 +811,9 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 		self.orb_position = orb[0]
 		self.sat_name = orb[1]
 		self.feid = int(self.scan_nims.value)
+		self.gbbsScan = gigablueBlindscan.isSupported(BRAND, nimmanager.nim_slots[self.feid].description)
+		self.gbbsOutput = ""
+		self.gbbsTransponders = 0
 		tab_hilow = {"high": 1, "low": 0}
 		tab_pol = {
 			"horizontal": eDVBFrontendParametersSatellite.Polarisation_Horizontal,
@@ -853,7 +861,7 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 
 		nim = nimmanager.nim_slots[self.feid]
 		tunername = nim.description
-		if not self.SundtekScan and tunername not in _blindscans2Nims and self.getNimSocket(self.feid) < 0:
+		if not self.SundtekScan and not self.gbbsScan and tunername not in _blindscans2Nims and self.getNimSocket(self.feid) < 0:
 			print("[Blindscan][prepareScanData] can't find i2c number!!")
 			return
 
@@ -897,7 +905,7 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 		if tunername in _blindscans2Nims:
 			exe_filename = "blindscan-s2"
 			exe_path = "/usr/bin/%s" % exe_filename
-			if os.path.exists(exe_path):
+			if exists(exe_path):
 				if tunername == "TBS-5925":
 					cmd = "%s -b -s %d -e %d -t %d" % (exe_filename, temp_start_int_freq, temp_end_int_freq, config.blindscan.step_mhz_tbs5925.value)
 				else:
@@ -922,13 +930,22 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 				return
 		elif self.SundtekScan:
 			exe_path = "/opt/bin/mediaclient"
-			if os.path.exists(exe_path):
+			if exists(exe_path):
 				cmd = "%s --blindscan %d" % (exe_path, self.feid)
 				if self.is_c_band_scan:
 					cmd += " --band c"
 			else:
 				self.session.open(MessageBox, _("Blindscan executable not found '%s'!") % exe_path, MessageBox.TYPE_ERROR)
 				return
+		elif self.gbbsScan:
+			if not exists(gigablueBlindscan.BINARY):
+				self.releaseFrontend()
+				self.running_count = self.max_count
+				self.is_runable = True
+				self.session.open(MessageBox, _("Blindscan executable not found '%s'!") % gigablueBlindscan.BINARY, MessageBox.TYPE_ERROR)
+				return
+			cmd = gigablueBlindscan.getCommand(temp_start_int_freq, temp_end_int_freq, config.blindscan.start_symbol.value, config.blindscan.stop_symbol.value, tab_pol[pol], tab_hilow[band], self.feid)
+			self.cmd = cmd
 		elif BRAND in ('ceryon', 'amiko', 'clap', 'dinobot', 'gigablue', 'ini', 'home', 'uclan', 'vuplus', 'xtrend') or MODEL.startswith('sf8008') or MACHINEBUILD in ('dags72604', 'dagsmv200', 'sfx6008', 'sx88v2'):
 			exe_filename = BRAND == 'amiko' and "amiko-blindscan" or \
 							BRAND == 'ceryon' and "ceryon_blindscan" or \
@@ -946,7 +963,7 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 							MACHINEBUILD == 'dags72604' and "dags_blindscan" or \
 							MACHINEBUILD == 'dagsmv200' and "dags_blindscan"
 			exe_path = "/usr/bin/%s" % exe_filename
-			if os.path.exists(exe_path):
+			if exists(exe_path):
 				cmd = "%s %d %d %d %d %d %d %d %d" % (exe_filename, temp_start_int_freq, temp_end_int_freq, config.blindscan.start_symbol.value, config.blindscan.stop_symbol.value, tab_pol[pol], tab_hilow[band], self.feid, self.getNimSocket(self.feid))
 				if BRAND in ('ceryon', 'clap', 'dinobot', 'uclan', 'amiko') or MODEL.startswith('sf8008') or MACHINEBUILD in ('gbmv200', 'dags72604', 'dagsmv200', 'sfx6008', 'sx88v2'):
 					cmd += " %d" % self.is_c_band_scan
@@ -962,7 +979,7 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 		elif BRAND == 'odin':
 			exe_filename = "odin_blindscan"
 			exe_path = "/usr/bin/%s" % exe_filename
-			if os.path.exists(exe_path):
+			if exists(exe_path):
 				cmd = "%s %d %d %d %d %d %d %d" % (exe_filename, self.feid, temp_start_int_freq, temp_end_int_freq, config.blindscan.start_symbol.value, config.blindscan.stop_symbol.value, tab_pol[pol], tab_hilow[band])  # odin_blindscan tuner_idx min_frequency max_frequency min_symbolrate max_symbolrate polarization(Vertical & Horizontal) hilow_band
 			else:
 				self.session.open(MessageBox, _("Blindscan executable not found '%s'!") % exe_path, MessageBox.TYPE_ERROR)
@@ -970,7 +987,7 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 		elif BRAND == 'xcore' or BRAND == 'edision':
 			exe_filename = "blindscan"
 			exe_path = "/usr/bin/%s" % exe_filename
-			if os.path.exists(exe_path):
+			if exists(exe_path):
 				cmd = "%s --start=%d --stop=%d --min=%d --max=%d --slot=%d --i2c=%d" % (exe_filename, temp_start_int_freq, temp_end_int_freq, config.blindscan.start_symbol.value, config.blindscan.stop_symbol.value, self.feid, self.getNimSocket(self.feid))
 				if tab_pol[pol]:
 					cmd += " --vertical"
@@ -984,7 +1001,7 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 		else:
 			self.session.open(MessageBox, not_support_text, MessageBox.TYPE_WARNING)
 			return
-		print("[Blindscan][prepareScanData] prepared command: [%s]" % (cmd))
+		print(f"[Blindscan][prepareScanData] prepared command: [{cmd}]")
 
 		self.thisRun = []  # used to check result corresponds with values used above
 		self.thisRun.append(int(temp_start_int_freq))
@@ -1025,6 +1042,10 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 			self.blindscan_session = self.session.openWithCallback(self.blindscanSessionClose, BlindscanState, tmpmes, tmpmes2, [])
 		else:
 			self.blindscan_session = self.session.openWithCallback(self.blindscanSessionNone, BlindscanState, tmpmes, tmpmes2, [])
+		if self.gbbsScan:
+			# Only start after result validation and the progress screen are ready.
+			# Allow Enigma2's asynchronous SEC sequence to set voltage/tone first.
+			self.bsTimer.start(2000, True)
 
 	def dataSundtekIsGood(self, data):
 		add_tp = False
@@ -1059,6 +1080,19 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 		return add_tp
 
 	def blindscanContainerClose(self, retval):
+		if self.gbbsScan:
+			self.gbbsRunning = False
+			if self.gbbsCancelCallback:
+				callback, result = self.gbbsCancelCallback
+				self.gbbsCancelCallback = None
+				self.full_data = ""
+				callback(result)
+				return
+			if retval:
+				print(f"[Blindscan] gbbs exited with status {retval}: {self.full_data}")
+				self.blindscan_session.close(False)
+				self.session.open(MessageBox, _("Blindscan failed (exit code %d). See the Enigma2 log for details.") % retval, MessageBox.TYPE_ERROR)
+				return
 		self.Sundtek_pol = ""
 		self.Sundtek_band = ""
 		self.offset = 0
@@ -1182,13 +1216,24 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 						parm.pls_mode = eDVBFrontendParametersSatellite.PLS_Gold
 						parm.pls_code = root2gold(parm.pls_code)
 					self.tmp_tplist.append(parm)
-		self.blindscan_session.close(True)
+		# The close callback may open the result screen; do not clear it afterwards.
+		blindscanSession = self.blindscan_session
 		self.blindscan_session = None
+		if blindscanSession:
+			blindscanSession.close(True)
 
 	def blindscanContainerAvail(self, str):
 		str = str.decode("utf-8", "replace") if isinstance(str, bytes) else str
 		print("[Blindscan][blindscanContainerAvail]", str)
 		self.full_data = self.full_data + str  # TODO: is this the cause of the duplicates in blindscanContainerClose?
+		if self.gbbsScan:
+			self.gbbsOutput += str
+			while "\n" in self.gbbsOutput:
+				line, self.gbbsOutput = self.gbbsOutput.split("\n", 1)
+				if line.startswith("OK "):
+					self.gbbsTransponders += 1
+					if self.blindscan_session:
+						self.blindscan_session["post_action"].setText(_("Transponders found: %d") % self.gbbsTransponders + f"\n\n{line}")
 		if self.blindscan_session:
 			if self.SundtekScan:
 				data = str.split()
@@ -1200,18 +1245,41 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 				if len(data) >= 6 and data[0] == 'OK':
 					self.blindscan_session["post_action"].setText(str)
 
+	def waitForGbbsStop(self, callback, result):
+		waiting = self.gbbsScan and self.gbbsRunning
+		if waiting and self.gbbsCancelCallback is None:
+			# Keep the container alive until gbbs has stopped the driver's seek thread.
+			# Destroying it here sends SIGKILL and skips the helper's cleanup.
+			self.gbbsCancelCallback = (callback, result)
+			self.blindscan_session = None
+			self["actions"].setEnabled(False)
+			self["actions2"].setEnabled(False)
+			self["actions3"].setEnabled(False)
+			self["footnote"].setText(_("Stopping blindscan, please wait..."))
+			self.blindscan_container.sendCtrlC()
+		return waiting
+
 	def blindscanSessionNone(self, *val):
-		import time
-		self.blindscan_container.sendCtrlC()
+		if self.waitForGbbsStop(self.blindscanSessionNone, val[0]):
+			return
+		self.bsTimer.stop()
+		if self.blindscan_container and not self.gbbsScan:
+			self.blindscan_container.sendCtrlC()
 		self.blindscan_container = None
-		time.sleep(2)
+		if not self.gbbsScan:
+			sleep(2)
 
 		self.blindscan_session = None
 		self.releaseFrontend()
+		if self.gbbsScan:
+			self["actions"].setEnabled(True)
+			self["actions2"].setEnabled(True)
+			self["footnote"].setText("")
 
 		if val[0] is False:
 			self.tmp_tplist = []
 			self.running_count = self.max_count
+			self.full_data = ""
 
 		self.is_runable = True
 
@@ -1220,14 +1288,22 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 		if not self.frontend:
 			return
 		print("[Blindscan][asyncBlindScan] closing frontend and starting blindscan")
-		self.frontend.closeFrontend()  # close because blindscan-s2 does not like to be open
+		if not self.gbbsScan:
+			self.frontend.closeFrontend()  # close because blindscan-s2 does not like to be open
 		self.blindscan_container = eConsoleAppContainer()
 		self.blindscan_container.appClosed.append(self.blindscanContainerClose)
 		self.blindscan_container.dataAvail.append(self.blindscanContainerAvail)
-		self.blindscan_container.execute(self.cmd)
+		if self.gbbsScan:
+			self.gbbsRunning = True
+			if self.blindscan_container.execute(*self.cmd):
+				self.blindscanContainerClose(-1)
+		else:
+			self.blindscan_container.execute(self.cmd)
 
 	def blindscanSessionClose(self, *val):
 		global XML_FILE
+		if self.waitForGbbsStop(self.blindscanSessionClose, val[0]):
+			return
 		self["key_yellow"].setText("")
 		XML_FILE = None
 		self["actions3"].setEnabled(False)
@@ -1456,7 +1532,7 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 		return location
 
 	def keyYellow(self):
-		if XML_FILE and os.path.exists(XML_FILE):
+		if XML_FILE and exists(XML_FILE):
 			self.session.open(Console, _(XML_FILE), ["cat %s" % XML_FILE])
 
 	def resetDefaults(self):
@@ -1515,8 +1591,7 @@ class Blindscan(ConfigListScreen, Screen, TransponderFiltering):
 		if nimconfig.configMode.getValue() == "advanced":
 			if str(nimconfig.advanced.sats.value) in ("3605", "3606"):
 				currSat = nimconfig.advanced.sat[int(nimconfig.advanced.sats.value)]
-				import ast
-				userSatellitesList = ast.literal_eval(currSat.userSatellitesList.getValue())
+				userSatellitesList = literal_eval(currSat.userSatellitesList.getValue())
 				if cur_orb_pos not in userSatellitesList:
 					currSat = nimconfig.advanced.sat[cur_orb_pos]
 			else:
@@ -1621,8 +1696,8 @@ def BlindscanMain(session, close=None, **kwargs):
 	except Exception:
 		pass
 	if have_Support_Blindscan or BRAND == 'dreambox':
-		from . import dmmBlindScan
-		session.openWithCallback(boundFunction(BlindscanCallback, close), dmmBlindScan.DmmBlindscan)
+		from .dmmBlindScan import DmmBlindscan  # Load the alternate backend only on supported hardware.
+		session.openWithCallback(boundFunction(BlindscanCallback, close), DmmBlindscan)
 	else:
 		session.openWithCallback(boundFunction(BlindscanCallback, close), Blindscan)
 
